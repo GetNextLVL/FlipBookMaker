@@ -1,0 +1,104 @@
+🧾 Specification: Offline Flipbook Generator (Personal Use)
+🎯 Purpose
+Create an offline flipbook from a local PDF file, for personal use only. The output will be a self-contained HTML folder (mini website) that can be uploaded to a server and opened in a new browser tab.
+
+📦 Output Structure
+The program generates a folder containing:
+
+bash
+Copy
+Edit
+/flipbook_output/
+├── index.html               # Main viewer file
+├── style.css                # Static styles (including background color)
+├── flipbook.js              # Flipbook behavior and navigation
+├── pdfjs/                   # PDF.js library (for rendering)
+│   ├── pdf.js
+│   └── pdf.worker.js
+├── assets/
+│   ├── input.pdf            # Source PDF file
+│   └── background.jpg       # Optional background image
+🛠️ Technologies to Use
+Frontend:
+
+HTML (structure)
+
+CSS (styling, RTL layout, background)
+
+JavaScript:
+
+Flipbook logic (double-page view, navigation buttons)
+
+PDF rendering with Mozilla PDF.js
+
+Backend (for optional automation or conversion):
+
+Python 3.x
+
+Libraries:
+
+PyMuPDF or pdf2image (if converting PDF pages to images is preferred)
+
+os, shutil, argparse (for file management, if needed)
+
+No external services. Everything runs locally.
+
+📋 Features Required
+Load any PDF (input.pdf) from the assets/ folder.
+
+Open on page 1 in single-page view.
+
+Then display pages in double-page mode (spread).
+
+Hebrew UI: RTL layout, interface buttons in Hebrew.
+
+Manual navigation buttons:
+
+"Next", "Previous" in Hebrew
+
+Optional drag-to-flip functionality (edge flipping)
+
+Fixed background per flipbook (set in CSS)
+
+No sound or animations
+
+Flipbook opens in a new browser tab (via target="_blank")
+
+📁 Folder Structure on Disk
+All code will live in the local project folder:
+
+bash
+Copy
+Edit
+/flipbook_creator/
+├── main.py                  # Python runner (optional)
+├── generate_flipbook.py     # Optional logic for preparing assets
+├── /templates/              # Contains base HTML structure
+│   └── index_template.html
+├── /flipbook_output/        # Final generated output
+├── /pdfjs/                  # PDF.js library folder (copied in)
+├── /assets/                 # Input files (PDFs, images)
+├── style.css
+├── flipbook.js
+🖥️ System Requirements
+OS: Windows (desktop)
+
+Interface Language: English (for development), Hebrew (for flipbook UI)
+
+No GUI needed – script-based operation
+
+Local preview via browser (index.html)
+
+Optional: host folder /flipbook_output/ on any web server
+
+🚀 Example Command (optional if using Python automation)
+bash
+Copy
+Edit
+python generate_flipbook.py --pdf assets/input.pdf --output flipbook_output/
+✅ Summary for Replit Bot
+"Build a local tool (no GUI) that takes a PDF from the /assets/ folder, and outputs a working flipbook site to the /flipbook_output/ folder.
+Use HTML/CSS/JS with PDF.js for rendering.
+Include Hebrew UI controls (Next, Previous), double-page layout, background customization via CSS, and open in a new tab.
+Organize files as described, and optionally include a Python script to automate the setup.
+Everything must be fully local, no paid libraries, no server or cloud dependencies."

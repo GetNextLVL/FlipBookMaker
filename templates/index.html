@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}מחולל ספרים דיגיטליים - העלאת PDF{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white text-center">
+                <h3 class="mb-0">
+                    <i class="fas fa-upload me-2"></i>
+                    העלאת קובץ PDF
+                </h3>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data" id="uploadForm">
+                    <div class="mb-3">
+                        <label for="pdf_file" class="form-label">
+                            <i class="fas fa-file-pdf me-1"></i>
+                            בחר קובץ PDF
+                        </label>
+                        <input type="file" class="form-control" id="pdf_file" name="pdf_file" accept=".pdf" required>
+                        <div class="form-text">
+                            גודל מקסימלי: 50MB
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="custom_title" class="form-label">
+                            <i class="fas fa-heading me-1"></i>
+                            כותרת הספר (אופציונלי)
+                        </label>
+                        <input type="text" class="form-control" id="custom_title" name="custom_title" placeholder="ספר דיגיטלי">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="background_color" class="form-label">
+                            <i class="fas fa-palette me-1"></i>
+                            צבע רקע
+                        </label>
+                        <input type="color" class="form-control form-control-color" id="background_color" name="background_color" value="#f5f5f5">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="background_image" class="form-label">
+                            <i class="fas fa-image me-1"></i>
+                            תמונת רקע (אופציונלי)
+                        </label>
+                        <input type="file" class="form-control" id="background_image" name="background_image" accept=".jpg,.jpeg,.webp">
+                        <div class="form-text">
+                            קבצים נתמכים: JPG, JPEG, WEBP. תמונה מבטלת צבע רקע
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg" id="generateBtn">
+                            <i class="fas fa-magic me-2"></i>
+                            צור ספר דיגיטלי
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-info-circle me-2"></i>
+                    הוראות שימוש
+                </h5>
+            </div>
+            <div class="card-body">
+                <ol class="mb-0">
+                    <li>בחר קובץ PDF מהמחשב שלך</li>
+                    <li>הזן כותרת לספר (אופציונלי)</li>
+                    <li>בחר צבע רקע</li>
+                    <li>לחץ על "צור ספר דיגיטלי"</li>
+                    <li>הקובץ יורד אוטומטית כ-ZIP</li>
+                    <li>חלץ את הקובץ ופתח את index.html בדפדפן</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-star me-2"></i>
+                    תכונות
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>תצוגת עמוד כפול</li>
+                            <li><i class="fas fa-check text-success me-2"></i>ממשק בעברית</li>
+                            <li><i class="fas fa-check text-success me-2"></i>תמיכה ב-RTL</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>עבודה לא מקוונת</li>
+                            <li><i class="fas fa-check text-success me-2"></i>ללא תלות חיצונית</li>
+                            <li><i class="fas fa-check text-success me-2"></i>רקע מותאם אישית</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Modal -->
+<div class="modal fade" id="loadingModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center py-4">
+                <div class="spinner-border text-primary mb-3" role="status">
+                    <span class="visually-hidden">טוען...</span>
+                </div>
+                <h5>יוצר ספר דיגיטלי...</h5>
+                <p class="text-muted mb-0">אנא המתן, התהליך עשוי לקחת מספר שניות</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% endblock %}
