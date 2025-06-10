@@ -15,12 +15,12 @@ datas.append(('templates', 'templates'))
 # Add static files
 datas.append(('static', 'static'))
 
-# Add other necessary files
+# Add other necessary folders (optional)
 datas.append(('uploads', 'uploads'))
 datas.append(('output', 'output'))
 
 a = Analysis(
-    ['launcher.py'],
+    ['main.py'],
     pathex=[],
     binaries=[],
     datas=datas,
@@ -46,6 +46,7 @@ a = Analysis(
     cipher=block_cipher,
     noarchive=False,
 )
+
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 
 exe = EXE(
@@ -62,11 +63,11 @@ exe = EXE(
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=True,
+    console=False,
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=None
+    icon='flipbook_icon.ico'
 )
