@@ -9,13 +9,11 @@ SolidCompression=yes
 DisableDirPage=no
 
 [Files]
-Source: "FlipbookGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\FlipbookGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "templates\*"; DestDir: "{app}\templates"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "static\*"; DestDir: "{app}\static"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "attached_assets\*"; DestDir: "{app}\attached_assets"; Flags: ignoreversion recursesubdirs createallsubdirs
-
-; הוספת אייקון לתוכנה (אם קיים)
-; לדוגמה: Source: "flipbook_icon.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "flipbook_icon.ico"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\Flipbook Generator"; Filename: "{app}\FlipbookGenerator.exe"
